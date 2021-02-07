@@ -54,7 +54,7 @@ const pause = () => {
 };
 
 if (playPauseButton != null) {
-    playPauseButton.addEventListener("click", event => {
+    playPauseButton.addEventListener("click", () => {
         if (isPaused()) {
             play();
         } else {
