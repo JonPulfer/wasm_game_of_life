@@ -1,14 +1,37 @@
-const CopyWebpackPlugin = require("copy-webpack-plugin");
+const HTMLWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 
 module.exports = {
-  entry: "./bootstrap.js",
+  mode: 'development',
+  devtool: 'eval-source-map',
+  entry: './src/bootstrap.ts',
   output: {
-    path: path.resolve(__dirname, "dist"),
-    filename: "bootstrap.js",
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, './dist'),
   },
-  mode: "development",
+  experiments: {
+    syncWebAssembly: true
+  },
+  module: {
+    rules: [
+      {
+        test: /\.ts$/,
+        use: 'ts-loader',
+        include: [path.resolve(__dirname, 'src')],
+        exclude: [path.resolve(__dirname, 'node_modules')]
+      },
+    ],
+  },
+  resolve: {
+    extensions: ['.ts', '.js'],
+  },
+  devServer: {
+    contentBase: path.join(__dirname, './dist'),
+  },
   plugins: [
-    new CopyWebpackPlugin(['index.html'])
+    new HTMLWebpackPlugin({
+      template: path.resolve(__dirname, './src/index.html'),
+      filename: 'index.html',
+    }),
   ],
 };

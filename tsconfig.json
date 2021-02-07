@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "preserveConstEnums": true,
+    "removeComments": true,
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "outDir": "./",
+    "lib": [
+      "dom"
+    ]
+  },
+
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "**/*.spec.ts"]
+}
